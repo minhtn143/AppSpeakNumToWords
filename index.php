@@ -27,7 +27,8 @@
 
 <?php
 $convertString = "";
-function speakWords(){
+function speakWords()
+{
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $numberInput = $_GET["numberInput"];
         if ($numberInput < 0 || $numberInput >= 1000) {
@@ -64,30 +65,27 @@ function speakWords(){
 
             }
         }*/
-        switch (true){
-            case $numberInput <10:
+        switch (true) {
+            case $numberInput < 10:
                 $convertString = count0to9($numberInput);
                 return $convertString;
-                break;
-            case $numberInput <20:
+            case $numberInput < 20:
                 $convertString = count10to19($numberInput);
                 return $convertString;
-                break;
-            case $numberInput <100:
-                if ($numberInput%10==0){
+            case $numberInput < 100:
+                if ($numberInput % 10 == 0) {
                     $convertString = countTens($numberInput);
                     return $convertString;
-                }else{
-                    $convertString = countTens($numberInput)." ".count0to9($numberInput%10);
+                } else {
+                    $convertString = countTens($numberInput) . " " . count0to9($numberInput % 10);
                     return $convertString;
                 };
-                break;
-            case $numberInput%100==0:
-                $convertString = count0to9(floor($numberInput/100))." Hundred";
+            case $numberInput % 100 == 0:
+                $convertString = count0to9(floor($numberInput / 100)) . " Hundred";
                 return $convertString;
             default:
-                $convertString = count0to9(floor($numberInput/100))." Hundred ". countTens($numberInput%100)
-                    ." ". count0to9($numberInput%100%10);
+                $convertString = count0to9(floor($numberInput / 100)) . " Hundred " . countTens($numberInput % 100)
+                    . " " . count0to9($numberInput % 100 % 10);
                 return $convertString;
         }
     }
@@ -104,43 +102,33 @@ function count0to9($number)
         case 0:
             $result = "Zero";
             return $result;
-            break;
         case 1:
-            $result =  "One";
+            $result = "One";
             return $result;
-            break;
         case 2:
-            $result =  "Two";
+            $result = "Two";
             return $result;
-            break;
         case 3:
-            $result =  "Three";
+            $result = "Three";
             return $result;
-            break;
         case 4:
-            $result =  "Four";
+            $result = "Four";
             return $result;
-            break;
         case 5:
-            $result =  "Five";
+            $result = "Five";
             return $result;
-            break;
         case 6:
-            $result =  "Six";
+            $result = "Six";
             return $result;
-            break;
         case 7:
-            $result =  "Seven";
+            $result = "Seven";
             return $result;
-            break;
         case 8:
-            $result =  "Eight";
+            $result = "Eight";
             return $result;
-            break;
         case 9:
-            $result =  "Nine";
+            $result = "Nine";
             return $result;
-            break;
     }
 }
 
@@ -150,60 +138,49 @@ function count10to19($number)
     $ones = $number % 10;
     switch ($ones) {
         case 0:
-            $result= "Ten";
+            $result = "Ten";
             return $result;
-            break;
         case 1:
-            $result= "Eleven";
+            $result = "Eleven";
             return $result;
-            break;
         case 2:
-            $result= "Twelve";
+            $result = "Twelve";
             return $result;
-            break;
         case 3:
-            $result= "Thirteen";
+            $result = "Thirteen";
             return $result;
-            break;
         case 4:
-            $result= "Fourteen";
+            $result = "Fourteen";
             return $result;
-            break;
         case 5:
-            $result= "Fifteen";
+            $result = "Fifteen";
             return $result;
-            break;
         default:
             $result = count0to9($ones) . "teen";
             return $result;
-            break;
     }
 }
 
-function countTens ($number){
+function countTens($number)
+{
     $result = "";
     $tens = floor($number / 10);
-    switch ($tens){
+    switch ($tens) {
         case 2:
-            $result= "Twenty";
+            $result = "Twenty";
             return $result;
-            break;
         case 3:
-            $result= "Thirty";
+            $result = "Thirty";
             return $result;
-            break;
         case 4:
-            $result= "Forty";
+            $result = "Forty";
             return $result;
-            break;
         case 5:
-            $result= "Fifty";
+            $result = "Fifty";
             return $result;
-            break;
         default:
             $result = count0to9($tens) . "ty";
             return $result;
-            break;
     }
 }
 
